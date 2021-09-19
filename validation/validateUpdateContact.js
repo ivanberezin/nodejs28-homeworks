@@ -1,10 +1,11 @@
 const Joi = require('joi')
 
-function validateUpdateContact(req, res, next) {
+function validateUpdateContact (req, res, next) {
   const updateContactRules = Joi.object({
     name: Joi.string(),
     email: Joi.string(),
-    phone: Joi.string()
+    phone: Joi.string(),
+    favorite: Joi.boolean()
   }).min(1)
   const result = updateContactRules.validate(req.body)
   if (result.error) {

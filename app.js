@@ -2,10 +2,9 @@ const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
 
-const api = require('./api')
+const api = require('./routes')
 
 require('dotenv').config()
-const PORT = process.env.PORT || 3001
 
 const app = express()
 
@@ -16,6 +15,13 @@ app.use(express.json())
 
 app.use('/api/v1/contacts', api.contactsRouter)
 
-app.listen(PORT, () => {
-  console.log('Server started listening on port: ', PORT)
+app.use((_, res) => {
+  res.status(404).json({ message: 'Not found' })
 })
+
+app.use((err, _, res, __) => {
+  const { status = 500, message = 'Server error' } = err
+  res.status(status).json({ message })
+})
+
+module.exports = app

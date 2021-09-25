@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const { Schema } = mongoose
+const { Schema, SchemaTypes } = mongoose
 
 const contactSchema = new Schema({
   name: {
@@ -17,6 +17,10 @@ const contactSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  owner: {
+    type: SchemaTypes.ObjectId,
+    ref: 'User',
+  }
 })
 
 const contactModel = mongoose.model('Contact', contactSchema)

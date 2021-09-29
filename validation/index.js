@@ -5,6 +5,7 @@ const validateUpdateContact = require('./validateUpdateContact')
 const authorize = require('./authorize')
 const validateAuth = require('./validateAuth')
 const validateUpdateSubs = require('./validateUpdateSubs')
+const validateEmail = require('./validateEmail')
 
 module.exports = {
   validateId,
@@ -13,5 +14,6 @@ module.exports = {
   validateUpdateStatusContact,
   authorize,
   validateAuth,
-  validateUpdateSubs
+  validateUpdateSubs,
+  validateEmail
 }

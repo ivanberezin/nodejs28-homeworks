@@ -18,4 +18,8 @@ userRouter.patch('/', validation.authorize, validation.validateUpdateSubs, userC
 
 userRouter.patch('/avatars', validation.authorize, upload.single('avatar'), userCtrl.avatarUpd, userCtrl.update)
 
+userRouter.get('/verify/:verificationToken', userCtrl.verifyEmail)
+
+userRouter.post('/verify', validation.validateEmail, userCtrl.secondaryVerifyEmail)
+
 module.exports = userRouter

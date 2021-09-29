@@ -13,6 +13,9 @@ async function login(req, res, next) {
     if (!userInDatabase) {
       throw unauthorizedError(res, 'Email or password is wrong')
     }
+    if (!userInDatabase.verify) {
+      throw unauthorizedError(res, 'Email is not verified')
+    }
     const isPasswordValid = await bcryptjs.compare(password, userInDatabase.password)
     if (!isPasswordValid) {
       throw unauthorizedError(res, 'Email or password is wrong')
